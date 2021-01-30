@@ -1,0 +1,59 @@
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\BodyStream-WPF.exe.config
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\BodyStream-WPF.exe
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\BodyStream-WPF.pdb
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\Microsoft.Kinect.dll
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\Microsoft.Kinect.xml
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\MainWindow.baml
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\MainWindow.g.cs
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\App.g.cs
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF_MarkupCompile.cache
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF.g.resources
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\Kinect.BodyStream.Properties.Resources.resources
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF.csproj.GenerateResource.cache
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF.csproj.CoreCompileInputs.cache
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF.csproj.CopyComplete
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF.exe
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF.pdb
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\bin\x64\Debug\Database\SwipeTwoArms.gba
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF_Content.g.cs
+C:\Users\Javier\source\repos\Kinect2020\BodyBasics-WPF-TwoImages-Gestures\obj\x64\Debug\BodyStream-WPF.csprojAssemblyReference.cache
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\bin\x64\Debug\BodyStream-WPF.exe.config
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\bin\x64\Debug\BodyStream-WPF.exe
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\bin\x64\Debug\BodyStream-WPF.pdb
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\bin\x64\Debug\Microsoft.Kinect.dll
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\bin\x64\Debug\Microsoft.Kinect.xml
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF.csprojAssemblyReference.cache
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\MainWindow.baml
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\MainWindow.g.cs
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\App.g.cs
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF_MarkupCompile.cache
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF.g.resources
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\Kinect.BodyStream.Properties.Resources.resources
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF.csproj.GenerateResource.cache
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF.csproj.CoreCompileInputs.cache
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF.csproj.CopyComplete
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF.exe
+C:\Users\Familia\source\repos\BodyBasics-WPF-TwoImages-Gestures - Template\obj\x64\Debug\BodyStream-WPF.pdb
+C:\Users\Familia\source\repos\Ejercicio7\bin\x64\Debug\BodyStream-WPF.exe.config
+C:\Users\Familia\source\repos\Ejercicio7\bin\x64\Debug\BodyStream-WPF.exe
+C:\Users\Familia\source\repos\Ejercicio7\bin\x64\Debug\BodyStream-WPF.pdb
+C:\Users\Familia\source\repos\Ejercicio7\bin\x64\Debug\Microsoft.Kinect.dll
+C:\Users\Familia\source\repos\Ejercicio7\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\Users\Familia\source\repos\Ejercicio7\bin\x64\Debug\Microsoft.Kinect.xml
+C:\Users\Familia\source\repos\Ejercicio7\bin\x64\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF.csprojAssemblyReference.cache
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\MainWindow.baml
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\MainWindow.g.cs
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\App.g.cs
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF_MarkupCompile.cache
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF.g.resources
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\Kinect.BodyStream.Properties.Resources.resources
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF.csproj.GenerateResource.cache
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF.csproj.CoreCompileInputs.cache
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF.csproj.CopyComplete
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF.exe
+C:\Users\Familia\source\repos\Ejercicio7\obj\x64\Debug\BodyStream-WPF.pdb
