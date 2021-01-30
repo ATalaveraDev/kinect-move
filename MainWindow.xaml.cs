@@ -39,7 +39,7 @@ namespace Kinect.BodyStream
         /// </summary>
         private Body[] bodies = null;
 
-
+        private List<Card> cards = new List<Card>();
         
 
         /// <summary>
@@ -89,6 +89,8 @@ namespace Kinect.BodyStream
         /// </summary>
         public MainWindow()
         {
+            this.createCards();
+
             // one sensor is currently supported
             this.kinectSensor = KinectSensor.GetDefault();
 
@@ -148,6 +150,14 @@ namespace Kinect.BodyStream
             this.InitializeComponent();
         }
 
+        private void createCards()
+        {
+            this.cards.Add(new Card(1, 2, "topLeft"));
+            this.cards.Add(new Card(2, 1, "topRight"));
+            this.cards.Add(new Card(3, 4, "bottomLeft"));
+            this.cards.Add(new Card(4, 3, "bottomRight"));
+        }
+        
         /// <summary>
         /// INotifyPropertyChangedPropertyChanged event to allow window controls to bind to changeable data
         /// </summary>
@@ -362,61 +372,61 @@ namespace Kinect.BodyStream
 
             if (e.PropertyName.Equals("Detected") && result.Detected &&(!result.GestureName.Equals("")))
             {
-                foreach (var body in this.bodies)
-                {
-                    if (body.IsTracked)
-                    {
-                        //posicion.Content = "Left hand Y: " + body.Joints[JointType.HandLeft].Position.Y;
-                    }
-                }
-
                 currTime =DateTime.Now;
                 TimeSpan diff = currTime - prevTime;
-
-                this.StatusText = result.GestureName + " " + num_events+ " Seconds: "+diff.TotalSeconds;
                 prevTime = currTime;
-                num_events++;
+                
                 if (diff.TotalSeconds > 1)
                 {
                     if (result.GestureName.Equals("SwipeTwoArms"))
                     {
-                        // initialize gesture detectors and listeners
-                        /// <summary>
-                        /// Tarea a realizar por alumno
-                        /// Implementar una acción
-                        /// </summary>
-                        /// /////////////////////////////////////////////////////////////////////////////////////////////////
-                        backgroundActive = !backgroundActive;
-                        top_izq.Visibility = Visibility.Hidden;
-                        top_izq_revealed.Visibility = Visibility.Visible;
+                        
                     }
                     else
                     if (result.GestureName.Equals("SwipeOneArm_Left"))
                     {
-                        // initialize gesture debodyretectors and listeners
-                        /// <summary>
-                        /// Tarea a realizar por alumno
-                        /// Implementar una acción
-                        /// </summary>
-                        /// /////////////////////////////////////////////////////////////////////////////////////////////////
-
+                        //displayCard("topLeft");
                     }
                     else
                     if (result.GestureName.Equals("SwipeOneArm_Right"))
                     {
-                        // initialize gesture detectors and listeners
-                        /// <summary>
-                        /// Tarea a realizar por alumno
-                        /// Implementar una acción
-                        /// </summary>
-                        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+                        
                     }
                 }
-                
-
-
             }
             
+        }
+
+        void displayCard(string position)
+        {
+            Card selectedCard = null;
+
+            switch(position) {
+                case "topLeft":
+                    selectedCard = this.cards.Find(c => c.name == "topLeft");
+                    break;
+                case "bottomLeft":
+                    selectedCard = this.cards.Find(c => c.name == "bottomLeft");
+                    break;
+                case "topRight":
+                    selectedCard = this.cards.Find(c => c.name == "topRight");
+                    break;
+                case "bottomRight":
+                    selectedCard = this.cards.Find(c => c.name == "bottomLeft");
+                    break;
+            }
+
+            if (selectedCard != null && !selectedCard.opened)
+            {
+                selectedCard.turnCard();
+            }
+
+            checkCondition(selectedCard);
+        }
+
+        private void checkCondition(Card selectedCard)
+        {
+            this.cards.Find(c => c.match == selectedCard.id).turnCard();
         }
     }
 }
