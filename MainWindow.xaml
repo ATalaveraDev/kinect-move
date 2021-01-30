@@ -31,7 +31,13 @@
         <StatusBar Grid.Row="2" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}">
             <StatusBarItem Content="{Binding StatusText}" />
         </StatusBar>
-        <Image x:Name="top_izq" HorizontalAlignment="Left" Height="84" Margin="404,0,-90,0" Grid.Row="1" VerticalAlignment="Top" Width="58" Source="carta.png"/>
-        <Image x:Name="top_izq_revealed" HorizontalAlignment="Left" Height="84" Margin="404,0,-90,0" Grid.Row="1" VerticalAlignment="Top" Width="58" Source="pika.jpg" Visibility="Hidden"/>
+        <Image x:Name="top_izq" HorizontalAlignment="Left" Height="118" Margin="404,0,-122,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="carta.png"/>
+        <Image x:Name="top_izq_revealed" HorizontalAlignment="Left" Height="118" Margin="404,0,-122,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="pika.jpg" Visibility="Hidden"/>
+        <Image x:Name="top_der" HorizontalAlignment="Left" Height="118" Margin="536,0,-254,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="carta.png"/>
+        <Image x:Name="top_der_revealed" HorizontalAlignment="Left" Height="118" Margin="536,0,-254,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="pika.jpg" Visibility="Hidden"/>
+        <Image x:Name="bottom_izq" HorizontalAlignment="Left" Height="118" Margin="404,138,-122,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="carta.png"/>
+        <Image x:Name="bottom_izq_revealed" HorizontalAlignment="Left" Height="118" Margin="404,138,-122,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="pika.jpg" Visibility="Hidden"/>
+        <Image x:Name="bottom_der" HorizontalAlignment="Left" Height="118" Margin="536,138,-254,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="carta.png"/>
+        <Image x:Name="bottom_der_revealed" HorizontalAlignment="Left" Height="118" Margin="536,138,-254,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Source="pika.jpg" Visibility="Hidden"/>
     </Grid>
 </Window>

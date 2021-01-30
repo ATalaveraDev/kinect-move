@@ -71,6 +71,54 @@ namespace Kinect.BodyStream {
         #line default
         #line hidden
         
+        
+        #line 36 "..\..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image top_der;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 37 "..\..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image top_der_revealed;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 38 "..\..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image bottom_izq;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 39 "..\..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image bottom_izq_revealed;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 40 "..\..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image bottom_der;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 41 "..\..\..\MainWindow.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image bottom_der_revealed;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -126,6 +174,24 @@ namespace Kinect.BodyStream {
             return;
             case 5:
             this.top_izq_revealed = ((System.Windows.Controls.Image)(target));
+            return;
+            case 6:
+            this.top_der = ((System.Windows.Controls.Image)(target));
+            return;
+            case 7:
+            this.top_der_revealed = ((System.Windows.Controls.Image)(target));
+            return;
+            case 8:
+            this.bottom_izq = ((System.Windows.Controls.Image)(target));
+            return;
+            case 9:
+            this.bottom_izq_revealed = ((System.Windows.Controls.Image)(target));
+            return;
+            case 10:
+            this.bottom_der = ((System.Windows.Controls.Image)(target));
+            return;
+            case 11:
+            this.bottom_der_revealed = ((System.Windows.Controls.Image)(target));
             return;
             }
             this._contentLoaded = true;
