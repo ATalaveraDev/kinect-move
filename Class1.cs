@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Kinect.BodyStream
 {
     class Card
     {
-        public Boolean opened { 
-            get; 
-            set; }
-        private String src = "";
+        public Boolean opened { get; set; }
+        public ImageSource src { get; set; }
         public Boolean matched { get; set; }
         public int id { get; set;  }
         public int match { get; set; }
@@ -30,19 +29,7 @@ namespace Kinect.BodyStream
             this.oculta = ocu;
             this.revelada = rev;
         }
-
-        public void turnCard()
-        {
-            this.opened = !this.opened;
-            if (this.opened)
-            {
-                mostrar();
-            }
-            else
-            {
-                ocultar();
-            }
-        }
+                
 
         public void ocultar()
         {

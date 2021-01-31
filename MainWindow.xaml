@@ -14,18 +14,21 @@
         <Image x:Name="top_izq" HorizontalAlignment="Left" Height="187" Margin="39,10,0,0" VerticalAlignment="Top" Width="149" Source="carta.png"  />
         <Image x:Name="top_izq_revealed" HorizontalAlignment="Left" Height="187" Margin="39,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Source="pica.png" Visibility="Hidden"/>
         <Image x:Name="top_der" HorizontalAlignment="Left" Height="187" Margin="404,10,0,0" VerticalAlignment="Top" Width="149" Source="carta.png"/>
-        <Image x:Name="top_der_revealed" HorizontalAlignment="Left" Height="187" Margin="404,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Source="corazon.png" Visibility="Hidden"/>
-        <Image x:Name="bottom_izq" HorizontalAlignment="Left" Height="187" Margin="39,209,0,0" VerticalAlignment="Top" Width="149" Source="carta.png"/>
+        <Image x:Name="top_der_revealed" HorizontalAlignment="Left" Height="187" Margin="404,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Source="corazon.png"  Visibility="Hidden"/>
+        <Image x:Name="bottom_izq" HorizontalAlignment="Left" Height="187" Margin="39,209,0,0" VerticalAlignment="Top" Width="149" Source="carta.png" />
         <Image x:Name="bottom_izq_revealed" HorizontalAlignment="Left" Height="187" Margin="39,209,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Source="pica.png" Visibility="Hidden"/>
-        <Image x:Name="bottom_der" HorizontalAlignment="Left" Height="187" Margin="404,209,0,0" VerticalAlignment="Top" Width="149" Source="carta.png"/>
+        <Image x:Name="bottom_der" HorizontalAlignment="Left" Height="187" Margin="404,209,0,0" VerticalAlignment="Top" Width="149" Source="carta.png"  />
         <Image x:Name="bottom_der_revealed" HorizontalAlignment="Left" Height="187" Margin="404,209,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Source="corazon.png" Visibility="Hidden"/>
         <Image x:Name="top_cent" HorizontalAlignment="Left" Height="187" Margin="224,10,0,0" VerticalAlignment="Top" Width="149" Source="carta.png"  />
         <Image x:Name="top_cent_revealed" HorizontalAlignment="Left" Height="187" Margin="224,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Source="trebol.png" Visibility="Hidden"/>
-        <Image x:Name="bot_cent" HorizontalAlignment="Left" Height="187" Margin="224,209,0,0" VerticalAlignment="Top" Width="149" Source="carta.png"/>
+        <Image x:Name="bot_cent" HorizontalAlignment="Left" Height="187" Margin="224,209,0,0" VerticalAlignment="Top" Width="149" Source="carta.png" />
         <Image x:Name="bot_cent_revealed" HorizontalAlignment="Left" Height="187" Margin="224,209,0,0" Grid.Row="1" VerticalAlignment="Top" Width="149" Source="trebol.png" Visibility="Hidden"/>
         <Label x:Name="avisoFin" Content="¡Fin del juego!" HorizontalAlignment="Left" Margin="121,440,0,-92" VerticalAlignment="Top" Width="332" Foreground="#FF0FA807" FontWeight="Bold" FontSize="48" Height="72" Visibility="Hidden" />
         <Label x:Name="avisoPareja" Content="¡Pareja encontrada!" HorizontalAlignment="Left" Margin="51,440,0,-92" VerticalAlignment="Top" Width="475" Foreground="#FF49B1E2" FontWeight="Bold" FontSize="48" Height="72" Visibility="Hidden" />
         <Label x:Name="avisoNoPareja" Content="¡No son pareja!" HorizontalAlignment="Left" Margin="101,440,0,-92" VerticalAlignment="Top" Width="432" Foreground="#FFEC360E" FontWeight="Bold" FontSize="48" Height="72" Visibility="Hidden"/>
+        <Image x:Name="pica" HorizontalAlignment="Left" Height="76" Margin="-53,457,0,-113" VerticalAlignment="Top" Width="66" Source="pica.png" Visibility="Hidden"/>
+        <Image x:Name="trebol" HorizontalAlignment="Left" Height="76" Margin="13,457,0,-113" VerticalAlignment="Top" Width="66" Source="trebol.png" Visibility="Hidden"/>
+        <Image x:Name="corazon" HorizontalAlignment="Left" Height="76" Margin="79,457,0,-113" VerticalAlignment="Top" Width="66" Source="corazon.png" Visibility="Hidden"/>
     </Grid>
 
 </Window>

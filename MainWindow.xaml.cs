@@ -12,7 +12,9 @@ namespace Kinect.BodyStream
     using System.Diagnostics;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using Microsoft.Kinect;
@@ -42,28 +44,6 @@ namespace Kinect.BodyStream
         private List<Card> cards = new List<Card>();
         
 
-        /// <summary>
-        /// Current status text to display
-        /// </summary>
-       // private string statusText = null;
-
-        /// <summary>
-        /// Current body renderer
-        /// </summary>
-       //private BodyRenderer bodyRenderer = null;
-
-        /// <summary>
-        /// Gets the bitmap to display
-        /// </summary>
-       /* public ImageSource ImageSource
-        {
-            get
-            {
-                return bodyRenderer.imageSource;
-            }
-        }
-       */
-
 
         private DepthFrameReader depthFrameReader;
         // Color Data Structures
@@ -72,17 +52,16 @@ namespace Kinect.BodyStream
         private const int BytesPerPixel = 4;
 
         private ushort[] depthFrameData;
-        //private bool isDepthShown=true;
 
         //gesture detectors and event raiser
         private GestureResultView result;
         private GestureDetector detector;
 
-        private int cartas = 0;
         private DateTime prevTime;
         private DateTime currTime;
 
-        //private Boolean backgroundActive = true;
+
+        private int cartas = 0;
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
@@ -98,16 +77,12 @@ namespace Kinect.BodyStream
             // get the depth (display) extents
             FrameDescription frameDescription = this.kinectSensor.DepthFrameSource.FrameDescription;
 
-            
-            //creates a body renderer
-          //  this.bodyRenderer = new BodyRenderer(this.kinectSensor.CoordinateMapper, frameDescription.Width, frameDescription.Height);
-
             // open the reader for the body frames
             this.bodyFrameReader = this.kinectSensor.BodyFrameSource.OpenReader();
 
             //depth reader and data structures
             depthFrameReader = kinectSensor.DepthFrameSource.OpenReader();
-            //depthFrameReader.FrameArrived += Reader_DepthSourceFrameArrived;
+
             FrameDescription depthFrameDescription = this.kinectSensor.DepthFrameSource.FrameDescription;
             this.depthFrameData = new ushort[depthFrameDescription.Width *
                                     depthFrameDescription.Height];
@@ -120,25 +95,12 @@ namespace Kinect.BodyStream
                 new WriteableBitmap(depthFrameDescription.Width,
                 depthFrameDescription.Height, 96.0, 96.0, PixelFormats.Bgr32, null);
 
-            // set IsAvailableChanged event notifier
-           // this.kinectSensor.IsAvailableChanged += this.Sensor_IsAvailableChanged;
-
             // open the sensor
             this.kinectSensor.Open();
-
-            // set the status text
-          //  this.StatusText = this.kinectSensor.IsAvailable ? Properties.Resources.RunningStatusText
-           //                                                 : Properties.Resources.NoSensorStatusText;
 
             // use the window object as the view model in this simple example
             this.DataContext = this;
 
-
-            /// <summary>
-            /// Tarea a realizar por alumno
-            /// Inicializar detector de gestos y listeners
-            /// </summary>
-            /// /////////////////////////////////////////////////////////////////////////////////////////////////
             result = new GestureResultView(0, "", false, false, 0.0f);
             detector = new GestureDetector(this.kinectSensor, result);
             result.PropertyChanged += GestureResult_PropertyChanged;
@@ -148,7 +110,7 @@ namespace Kinect.BodyStream
 
             // initialize the components (controls) of the window
             this.InitializeComponent();
-            this.createCards();
+            this.elegirMazo();
         }
 
        
@@ -160,39 +122,12 @@ namespace Kinect.BodyStream
 
 
         /// <summary>
-        /// Gets or sets the current status text to display
-        /// </summary>
-     /*   public string StatusText
-        {
-            get
-            {
-                return this.statusText;
-            }
-
-            set
-            {
-                if (this.statusText != value)
-                {
-                    this.statusText = value;
-
-                    // notify any bound elements that the text has changed
-                    if (this.PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new PropertyChangedEventArgs("StatusText"));
-                    }
-                }
-            }
-        }*/
-
-        /// <summary>
         /// Execute start up tasks
         /// </summary>
         /// <param name="sender">object sending the event</param>
         /// <param name="e">event arguments</param>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            
-
             if (this.bodyFrameReader != null)
             {
                 this.bodyFrameReader.FrameArrived += this.Reader_FrameArrived;
@@ -248,8 +183,6 @@ namespace Kinect.BodyStream
 
             if (dataReceived)
             {              
-                    //bodyRenderer.render(bodies);
-
                 
                 for (int i = 0; i < bodies.Length; ++i)
                 {
@@ -263,104 +196,6 @@ namespace Kinect.BodyStream
 
             }
         }
-        /*
-        private void Reader_DepthSourceFrameArrived(object sender, DepthFrameArrivedEventArgs e)
-        {
-
-            
-            using (DepthFrame depthFrame =
-                 e.FrameReference.AcquireFrame())
-            {
-                if (isDepthShown)
-                    ShowDepthFrame(depthFrame);
-            }
-
-        }
-       
-        private void ShowDepthFrame(DepthFrame depthFrame)
-        {
-            bool depthFrameProcessed = false;
-            ushort minDepth = 0;
-            ushort maxDepth = 0;
-
-            if (depthFrame != null)
-            {
-                FrameDescription depthFrameDescription =
-                    depthFrame.FrameDescription;
-
-                // verify data and write the new infrared frame data
-                // to the display bitmap
-                if (((depthFrameDescription.Width * depthFrameDescription.Height)
-                    == this.depthFrameData.Length) &&
-                    (depthFrameDescription.Width == this.bitmap.PixelWidth) &&
-                    (depthFrameDescription.Height == this.bitmap.PixelHeight))
-                {
-                    // Copy the pixel data from the image to a temporary array
-                    depthFrame.CopyFrameDataToArray(this.depthFrameData);
-
-                    minDepth = depthFrame.DepthMinReliableDistance;
-                    maxDepth = depthFrame.DepthMaxReliableDistance;
-
-                    depthFrameProcessed = true;
-                }
-            }
-
-            // we got a frame, convert and render
-            if (depthFrameProcessed)
-            {
-                ConvertDepthDataToPixels(minDepth, maxDepth);
-                RenderPixelArray(this.depthPixels);
-            }
-        }
-
-        private void ConvertDepthDataToPixels(ushort minDepth, ushort maxDepth)
-        {
-            int colorPixelIndex = 0;
-            // Shape the depth to the range of a byte
-            int mapDepthToByte = maxDepth / 256;
-
-            for (int i = 0; i < this.depthFrameData.Length; ++i)
-            {
-                // Get the depth for this pixel
-                ushort depth = this.depthFrameData[i];
-
-                // To convert to a byte, we're mapping the depth value
-                // to the byte range.
-                // Values outside the reliable depth range are 
-                // mapped to 0 (black).
-                byte intensity = (byte)(depth >= minDepth &&
-                    depth <= maxDepth && backgroundActive ? (depth / mapDepthToByte) : 0);
-
-                this.depthPixels[colorPixelIndex++] = intensity; //Blue
-                this.depthPixels[colorPixelIndex++] = intensity; //Green
-                this.depthPixels[colorPixelIndex++] = intensity; //Red
-                this.depthPixels[colorPixelIndex++] = 255; //Alpha
-            }
-        }
-
-        private void RenderPixelArray(byte[] pixels)
-        {
-            this.bitmap.WritePixels(
-               new Int32Rect(0, 0, this.bitmap.PixelWidth, this.bitmap.PixelHeight),
-               pixels,
-               this.bitmap.PixelWidth * sizeof(int),
-               0);
-            displayColorImage.Source = this.bitmap;
-        }
-        /// <summary>
-        /// Handles the event which the sensor becomes unavailable (E.g. paused, closed, unplugged).
-        /// </summary>
-        /// <param name="sender">object sending the event</param>
-        /// <param name="e">event arguments</param>
-        private void Sensor_IsAvailableChanged(object sender, IsAvailableChangedEventArgs e)
-        {
-            // on failure, set the status text
-            this.StatusText = this.kinectSensor.IsAvailable ? Properties.Resources.RunningStatusText
-                                                            : Properties.Resources.SensorNotAvailableStatusText;
-        }
-
-        */
-
         void GestureResult_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             GestureResultView result = sender as GestureResultView;
@@ -496,6 +331,42 @@ namespace Kinect.BodyStream
 
         }
 
+        private void elegirMazo()
+        {
+            Random rnd = new Random();
+            int rdm = rnd.Next(0, 8);
+
+            switch (rdm)
+            {
+                case 0:
+                    createCards();
+                    break;
+                case 1:
+                    createCardsA();
+                    break;
+                case 2:
+                    createCardsB();
+                    break;
+                case 3:
+                    createCardsC();
+                    break;
+                case 4:
+                    createCardsD();
+                    break;
+                case 5:
+                    createCardsE();
+                    break;
+                case 6:
+                    createCardsF();
+                    break;
+                case 7:
+                    createCardsG();
+                    break;
+                case 8:
+                    createCardsH();
+                    break;
+            }
+        }
         private void createCards()
         {
             this.cards.Add(new Card(1, 3, "topLeft", this.top_izq, this.top_izq_revealed));
@@ -504,6 +375,153 @@ namespace Kinect.BodyStream
             this.cards.Add(new Card(4, 2, "bottomRight", this.bottom_der, this.bottom_der_revealed));
             this.cards.Add(new Card(5, 6, "topCenter", this.top_cent, this.top_cent_revealed));
             this.cards.Add(new Card(6, 5, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+        }
+
+        private void createCardsA()
+        {
+
+            this.top_izq_revealed.Source = this.pica.Source;
+            this.top_cent_revealed.Source = this.pica.Source;
+            this.top_der_revealed.Source = this.corazon.Source;
+            this.bottom_izq_revealed.Source = this.corazon.Source;
+            this.bot_cent_revealed.Source = this.trebol.Source;
+            this.bottom_der_revealed.Source = this.trebol.Source;
+            this.cards.Add(new Card(1, 2, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 1, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 4, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 3, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 6, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 5, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+            
+            
+        }
+
+        private void createCardsB()
+        {
+
+            this.top_izq_revealed.Source = this.pica.Source;
+            this.top_cent_revealed.Source = this.trebol.Source;
+            this.top_der_revealed.Source = this.corazon.Source;
+            this.bottom_izq_revealed.Source = this.trebol.Source;
+            this.bot_cent_revealed.Source = this.pica.Source;
+            this.bottom_der_revealed.Source = this.corazon.Source;
+            
+            this.cards.Add(new Card(1, 5, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 4, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 6, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 2, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 1, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 3, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+            
+            
+        }
+        private void createCardsC()
+        {
+            this.top_izq_revealed.Source = this.corazon.Source;
+            this.top_cent_revealed.Source = this.pica.Source;
+            this.top_der_revealed.Source = this.trebol.Source;
+            this.bottom_izq_revealed.Source = this.pica.Source;
+            this.bot_cent_revealed.Source = this.trebol.Source;
+            this.bottom_der_revealed.Source = this.corazon.Source;
+
+            this.cards.Add(new Card(1, 6, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 4, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 5, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 2, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 3, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 1, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+            
+            
+        }
+
+        private void createCardsD()
+        {
+
+            this.top_izq_revealed.Source = this.trebol.Source;
+            this.top_cent_revealed.Source = this.pica.Source;
+            this.top_der_revealed.Source = this.trebol.Source;
+            this.bottom_izq_revealed.Source = this.pica.Source;
+            this.bot_cent_revealed.Source = this.corazon.Source;
+            this.bottom_der_revealed.Source = this.corazon.Source;
+
+            this.cards.Add(new Card(1, 3, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 4, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 1, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 2, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 6, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 5, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+        }
+
+
+        private void createCardsE()
+        {
+
+            this.top_izq_revealed.Source = this.corazon.Source; 
+            this.top_cent_revealed.Source = this.trebol.Source; 
+            this.top_der_revealed.Source = this.pica.Source; 
+            this.bottom_izq_revealed.Source = this.corazon.Source;
+            this.bot_cent_revealed.Source = this.trebol.Source;
+            this.bottom_der_revealed.Source = this.pica.Source;
+
+            this.cards.Add(new Card(1, 4, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 5, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 6, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 1, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 2, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 3, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+        }
+
+        private void createCardsF()
+        {
+
+            this.top_izq_revealed.Source = this.trebol.Source; 
+            this.top_cent_revealed.Source = this.corazon.Source;
+            this.top_der_revealed.Source = this.corazon.Source; 
+            this.bottom_izq_revealed.Source = this.pica.Source;
+            this.bot_cent_revealed.Source = this.trebol.Source;
+            this.bottom_der_revealed.Source = this.pica.Source;
+
+            this.cards.Add(new Card(1, 5, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 3, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 2, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 6, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 1, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 4, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+        }
+
+        private void createCardsG()
+        {
+
+            this.top_izq_revealed.Source = this.corazon.Source;  
+            this.top_cent_revealed.Source = this.corazon.Source;
+            this.top_der_revealed.Source = this.pica.Source;  
+            this.bottom_izq_revealed.Source = this.trebol.Source;
+            this.bot_cent_revealed.Source = this.pica.Source;  
+            this.bottom_der_revealed.Source = this.corazon.Source;
+
+            this.cards.Add(new Card(1, 2, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 1, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 5, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 6, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 3, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 4, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+        }
+        private void createCardsH()
+        {
+
+            this.top_izq_revealed.Source = this.trebol.Source;
+            this.top_cent_revealed.Source = this.corazon.Source;
+            this.top_der_revealed.Source = this.pica.Source;
+            this.bottom_izq_revealed.Source = this.corazon.Source;
+            this.bot_cent_revealed.Source = this.pica.Source;
+            this.bottom_der_revealed.Source = this.trebol.Source;
+
+            this.cards.Add(new Card(1, 6, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 4, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(3, 5, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(4, 2, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(5, 3, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
+            this.cards.Add(new Card(6, 1, "bottomRight", this.bottom_der, this.bottom_der_revealed));
         }
     }
 }

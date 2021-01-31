@@ -69,3 +69,22 @@ C:\Users\Familia\source\repos\Ejercicio7\obj\Debug\BodyStream-WPF.csproj.CoreCom
 C:\Users\Familia\source\repos\Ejercicio7\obj\Debug\BodyStream-WPF.csproj.CopyComplete
 C:\Users\Familia\source\repos\Ejercicio7\obj\Debug\BodyStream-WPF.exe
 C:\Users\Familia\source\repos\Ejercicio7\obj\Debug\BodyStream-WPF.pdb
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\bin\AnyCPU\Debug\BodyStream-WPF.exe.config
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\bin\AnyCPU\Debug\BodyStream-WPF.exe
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\bin\AnyCPU\Debug\BodyStream-WPF.pdb
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\bin\AnyCPU\Debug\Microsoft.Kinect.dll
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\bin\AnyCPU\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\bin\AnyCPU\Debug\Microsoft.Kinect.xml
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\bin\AnyCPU\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF.csprojAssemblyReference.cache
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\MainWindow.baml
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\MainWindow.g.cs
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\App.g.cs
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF_MarkupCompile.cache
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF.g.resources
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\Kinect.BodyStream.Properties.Resources.resources
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF.csproj.GenerateResource.cache
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF.csproj.CoreCompileInputs.cache
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF.csproj.CopyComplete
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF.exe
+C:\Users\dramos\Desktop\PARA DIM\TAREA 7\Juego\obj\Debug\BodyStream-WPF.pdb
