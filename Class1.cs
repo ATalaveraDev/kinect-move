@@ -26,6 +26,7 @@ namespace Kinect.BodyStream
             this.match = match;
             this.name = name;
             this.opened = false;
+            this.matched = false;
             this.oculta = ocu;
             this.revelada = rev;
         }
@@ -45,6 +46,7 @@ namespace Kinect.BodyStream
 
         public void ocultar()
         {
+            this.opened = false;
             revelada.Visibility = System.Windows.Visibility.Hidden;
             oculta.Visibility = System.Windows.Visibility.Visible;
             Console.WriteLine("entro a ocultar");
@@ -52,6 +54,7 @@ namespace Kinect.BodyStream
 
         public void mostrar()
         {
+            this.opened = true;
             revelada.Visibility = System.Windows.Visibility.Visible;
             oculta.Visibility = System.Windows.Visibility.Hidden;
             Console.WriteLine("entro a mostrar");

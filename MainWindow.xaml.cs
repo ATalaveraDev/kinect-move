@@ -45,24 +45,24 @@ namespace Kinect.BodyStream
         /// <summary>
         /// Current status text to display
         /// </summary>
-        private string statusText = null;
+       // private string statusText = null;
 
         /// <summary>
         /// Current body renderer
         /// </summary>
-        private BodyRenderer bodyRenderer = null;
+       //private BodyRenderer bodyRenderer = null;
 
         /// <summary>
         /// Gets the bitmap to display
         /// </summary>
-        public ImageSource ImageSource
+       /* public ImageSource ImageSource
         {
             get
             {
                 return bodyRenderer.imageSource;
             }
         }
-
+       */
 
 
         private DepthFrameReader depthFrameReader;
@@ -72,7 +72,7 @@ namespace Kinect.BodyStream
         private const int BytesPerPixel = 4;
 
         private ushort[] depthFrameData;
-        private bool isDepthShown=true;
+        //private bool isDepthShown=true;
 
         //gesture detectors and event raiser
         private GestureResultView result;
@@ -82,7 +82,7 @@ namespace Kinect.BodyStream
         private DateTime prevTime;
         private DateTime currTime;
 
-        private Boolean backgroundActive = true;
+        //private Boolean backgroundActive = true;
 
         /// <summary>
         /// Initializes a new instance of the MainWindow class.
@@ -100,14 +100,14 @@ namespace Kinect.BodyStream
 
             
             //creates a body renderer
-            this.bodyRenderer = new BodyRenderer(this.kinectSensor.CoordinateMapper, frameDescription.Width, frameDescription.Height);
+          //  this.bodyRenderer = new BodyRenderer(this.kinectSensor.CoordinateMapper, frameDescription.Width, frameDescription.Height);
 
             // open the reader for the body frames
             this.bodyFrameReader = this.kinectSensor.BodyFrameSource.OpenReader();
 
             //depth reader and data structures
             depthFrameReader = kinectSensor.DepthFrameSource.OpenReader();
-            depthFrameReader.FrameArrived += Reader_DepthSourceFrameArrived;
+            //depthFrameReader.FrameArrived += Reader_DepthSourceFrameArrived;
             FrameDescription depthFrameDescription = this.kinectSensor.DepthFrameSource.FrameDescription;
             this.depthFrameData = new ushort[depthFrameDescription.Width *
                                     depthFrameDescription.Height];
@@ -121,14 +121,14 @@ namespace Kinect.BodyStream
                 depthFrameDescription.Height, 96.0, 96.0, PixelFormats.Bgr32, null);
 
             // set IsAvailableChanged event notifier
-            this.kinectSensor.IsAvailableChanged += this.Sensor_IsAvailableChanged;
+           // this.kinectSensor.IsAvailableChanged += this.Sensor_IsAvailableChanged;
 
             // open the sensor
             this.kinectSensor.Open();
 
             // set the status text
-            this.StatusText = this.kinectSensor.IsAvailable ? Properties.Resources.RunningStatusText
-                                                            : Properties.Resources.NoSensorStatusText;
+          //  this.StatusText = this.kinectSensor.IsAvailable ? Properties.Resources.RunningStatusText
+           //                                                 : Properties.Resources.NoSensorStatusText;
 
             // use the window object as the view model in this simple example
             this.DataContext = this;
@@ -162,7 +162,7 @@ namespace Kinect.BodyStream
         /// <summary>
         /// Gets or sets the current status text to display
         /// </summary>
-        public string StatusText
+     /*   public string StatusText
         {
             get
             {
@@ -182,7 +182,7 @@ namespace Kinect.BodyStream
                     }
                 }
             }
-        }
+        }*/
 
         /// <summary>
         /// Execute start up tasks
@@ -248,7 +248,7 @@ namespace Kinect.BodyStream
 
             if (dataReceived)
             {              
-                    bodyRenderer.render(bodies);
+                    //bodyRenderer.render(bodies);
 
                 
                 for (int i = 0; i < bodies.Length; ++i)
@@ -263,7 +263,7 @@ namespace Kinect.BodyStream
 
             }
         }
-
+        /*
         private void Reader_DepthSourceFrameArrived(object sender, DepthFrameArrivedEventArgs e)
         {
 
@@ -276,7 +276,7 @@ namespace Kinect.BodyStream
             }
 
         }
-
+       
         private void ShowDepthFrame(DepthFrame depthFrame)
         {
             bool depthFrameProcessed = false;
@@ -359,7 +359,7 @@ namespace Kinect.BodyStream
                                                             : Properties.Resources.SensorNotAvailableStatusText;
         }
 
-
+        */
 
         void GestureResult_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -376,24 +376,40 @@ namespace Kinect.BodyStream
                     if (result.GestureName.Equals("brazoArribaDerecha"))
                     {
                         displayCard("topRight");
+                        Console.WriteLine("ARRIBA_derecha");
                     }
                     else
                     if (result.GestureName.Equals("brazoArribaIzquierda_Left"))
                     {
                         displayCard("topLeft");
+                        Console.WriteLine("ARRIBA_izquierda");
                     }
                     else
                     if (result.GestureName.Equals("brazoCentro_Right"))
                     {
                         displayCard("bottomRight");
+                        Console.WriteLine("ABAJO DERECHA");
                     }
                     else
                     if (result.GestureName.Equals("BrazoCentroIzquierda_Left"))
                     {
                         displayCard("bottomLeft");
+                        Console.WriteLine("Abajo_izquierda");
+                    }
+                    else
+                    if (result.GestureName.Equals("brazosArriba"))
+                    {
+                        displayCard("topCenter");
+                        Console.WriteLine("ARRIBA_centro");
+                    }
+                    else
+                    if (result.GestureName.Equals("brazosCentro"))
+                    {
+                        displayCard("bottomCenter");
+                        Console.WriteLine("abajo centro");
                     }
 
-               }
+                }
 
             }
         }
@@ -415,27 +431,44 @@ namespace Kinect.BodyStream
                 case "bottomRight":
                     selectedCard = this.cards.Find(c => c.name == "bottomRight");
                     break;
+                case "topCenter":
+                    selectedCard = this.cards.Find(c => c.name == "topCenter");
+                    break;
+                case "bottomCenter":
+                    selectedCard = this.cards.Find(c => c.name == "bottomCenter");
+                    break;
             }
             
             if (selectedCard != null && !selectedCard.opened)
             {
-                
-                
-                if(cartas == 2)
+
+                if(cartas == 1)
                 {
-                    cartas = 0;
-                    foreach(Card c in cards){
-                        if(!c.matched)
-                            c.ocultar();
-                    }
+                    checkCondition(selectedCard);
                 }
-                selectedCard.turnCard();
+
+                if (cartas == 2)
+                {
+                    Console.WriteLine(cartas);
+
+                    cartas = 0;
+                    foreach (Card c in cards)
+                    {
+                        if (!c.matched)
+                            c.ocultar();
+                        this.avisoPareja.Visibility = Visibility.Hidden;
+                        this.avisoNoPareja.Visibility = Visibility.Hidden;
+                    }
+
+                }
                 cartas++;
+                selectedCard.mostrar();
+                
+                
             }
-
-
-            checkCondition(selectedCard);
+            
         }
+
 
         private void checkCondition(Card selectedCard)
         {
@@ -444,12 +477,20 @@ namespace Kinect.BodyStream
             {
                 this.cards.Find(c => c.match == selectedCard.id).matched = true;
                 this.cards.Find(c => c.id == selectedCard.id).matched = true;
-                Console.WriteLine("pareja encontrada");
+                this.avisoPareja.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                this.avisoPareja.Visibility = Visibility.Hidden;
+                this.avisoNoPareja.Visibility = Visibility.Visible;
             }
 
             if (this.cards.Find(c => !c.matched) == null)
             {
-                this.aviso.Visibility = Visibility.Visible;
+                this.avisoFin.Visibility = Visibility.Visible;
+                this.avisoPareja.Visibility = Visibility.Hidden;
+                this.avisoNoPareja.Visibility = Visibility.Hidden;
                 Console.WriteLine("FIN DE PARTIDA");
             }
 
@@ -461,6 +502,8 @@ namespace Kinect.BodyStream
             this.cards.Add(new Card(2, 4, "topRight", this.top_der, this.top_der_revealed));
             this.cards.Add(new Card(3, 1, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
             this.cards.Add(new Card(4, 2, "bottomRight", this.bottom_der, this.bottom_der_revealed));
+            this.cards.Add(new Card(5, 6, "topCenter", this.top_cent, this.top_cent_revealed));
+            this.cards.Add(new Card(6, 5, "bottomCenter", this.bot_cent, this.bot_cent_revealed));
         }
     }
 }
