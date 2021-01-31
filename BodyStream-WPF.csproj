@@ -131,6 +131,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Database\DIMGestures.gbd" />
+    <None Include="Database\GestosMemoria.gbd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -156,6 +157,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="pika.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\corazon.png" />
+    <Resource Include="Images\diamante.png" />
+    <Resource Include="Images\pica.png" />
+    <Resource Include="Images\trebol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="corazon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pica.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

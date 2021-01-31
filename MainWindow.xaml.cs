@@ -78,7 +78,7 @@ namespace Kinect.BodyStream
         private GestureResultView result;
         private GestureDetector detector;
 
-        private int num_events = 0;
+        private int cartas = 0;
         private DateTime prevTime;
         private DateTime currTime;
 
@@ -89,7 +89,7 @@ namespace Kinect.BodyStream
         /// </summary>
         public MainWindow()
         {
-            this.createCards();
+            
 
             // one sensor is currently supported
             this.kinectSensor = KinectSensor.GetDefault();
@@ -148,15 +148,10 @@ namespace Kinect.BodyStream
 
             // initialize the components (controls) of the window
             this.InitializeComponent();
+            this.createCards();
         }
 
-        private void createCards()
-        {
-            this.cards.Add(new Card(1, 2, "topLeft"));
-            this.cards.Add(new Card(2, 1, "topRight"));
-            this.cards.Add(new Card(3, 4, "bottomLeft"));
-            this.cards.Add(new Card(4, 3, "bottomRight"));
-        }
+       
         
         /// <summary>
         /// INotifyPropertyChangedPropertyChanged event to allow window controls to bind to changeable data
@@ -366,35 +361,41 @@ namespace Kinect.BodyStream
 
 
 
-        void GestureResult_PropertyChanged(object sender,PropertyChangedEventArgs e)
+        void GestureResult_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             GestureResultView result = sender as GestureResultView;
 
-            if (e.PropertyName.Equals("Detected") && result.Detected &&(!result.GestureName.Equals("")))
+            if (e.PropertyName.Equals("Detected") && result.Detected && (!result.GestureName.Equals("")))
             {
-                currTime =DateTime.Now;
+                currTime = DateTime.Now;
                 TimeSpan diff = currTime - prevTime;
                 prevTime = currTime;
-                
+
                 if (diff.TotalSeconds > 1)
                 {
-                    if (result.GestureName.Equals("SwipeTwoArms"))
+                    if (result.GestureName.Equals("brazoArribaDerecha"))
                     {
-                        
+                        displayCard("topRight");
                     }
                     else
-                    if (result.GestureName.Equals("SwipeOneArm_Left"))
+                    if (result.GestureName.Equals("brazoArribaIzquierda_Left"))
                     {
-                        //displayCard("topLeft");
+                        displayCard("topLeft");
                     }
                     else
-                    if (result.GestureName.Equals("SwipeOneArm_Right"))
+                    if (result.GestureName.Equals("brazoCentro_Right"))
                     {
-                        
+                        displayCard("bottomRight");
                     }
-                }
+                    else
+                    if (result.GestureName.Equals("BrazoCentroIzquierda_Left"))
+                    {
+                        displayCard("bottomLeft");
+                    }
+
+               }
+
             }
-            
         }
 
         void displayCard(string position)
@@ -412,21 +413,54 @@ namespace Kinect.BodyStream
                     selectedCard = this.cards.Find(c => c.name == "topRight");
                     break;
                 case "bottomRight":
-                    selectedCard = this.cards.Find(c => c.name == "bottomLeft");
+                    selectedCard = this.cards.Find(c => c.name == "bottomRight");
                     break;
             }
-
+            
             if (selectedCard != null && !selectedCard.opened)
             {
+                
+                
+                if(cartas == 2)
+                {
+                    cartas = 0;
+                    foreach(Card c in cards){
+                        if(!c.matched)
+                            c.ocultar();
+                    }
+                }
                 selectedCard.turnCard();
+                cartas++;
             }
+
 
             checkCondition(selectedCard);
         }
 
         private void checkCondition(Card selectedCard)
         {
-            this.cards.Find(c => c.match == selectedCard.id).turnCard();
+            
+            if(this.cards.Find(c => c.match == selectedCard.id).opened)
+            {
+                this.cards.Find(c => c.match == selectedCard.id).matched = true;
+                this.cards.Find(c => c.id == selectedCard.id).matched = true;
+                Console.WriteLine("pareja encontrada");
+            }
+
+            if (this.cards.Find(c => !c.matched) == null)
+            {
+                this.aviso.Visibility = Visibility.Visible;
+                Console.WriteLine("FIN DE PARTIDA");
+            }
+
+        }
+
+        private void createCards()
+        {
+            this.cards.Add(new Card(1, 3, "topLeft", this.top_izq, this.top_izq_revealed));
+            this.cards.Add(new Card(2, 4, "topRight", this.top_der, this.top_der_revealed));
+            this.cards.Add(new Card(3, 1, "bottomLeft", this.bottom_izq, this.bottom_izq_revealed));
+            this.cards.Add(new Card(4, 2, "bottomRight", this.bottom_der, this.bottom_der_revealed));
         }
     }
 }
